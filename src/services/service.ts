@@ -14,7 +14,7 @@ let cityDistGraph = [
     [70,25,90,40,60,0]
 ];
 
-export const getFlightData = new Promise<Array<FlightDataProps>>((resolve, reject) => {
+export const getFlightData = () => new Promise<Array<FlightDataProps>>((resolve, reject) => {
     let flightData:Array<FlightDataProps> = [];
     let startDate = new Date();
     startDate.setDate(startDate.getDate() - 10);

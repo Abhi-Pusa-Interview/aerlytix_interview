@@ -30,9 +30,9 @@ const PortfolioItem = (props:PortfolioProps) => {
 
     let newProp = {id:props.id,name:props.name,aircrafts:props.aircrafts};
 
-    return(<Item key={props.id} onClick={() => navigate(`${props.id}`,{ state: newProp })} sx={{position:"relative",cursor:"pointer"}}>
+    return(<Item key={props.id} data-testid="item-wrapper" onClick={() => navigate(`${props.id}`,{ state: newProp })} sx={{position:"relative",cursor:"pointer"}}>
         <Typography>{props.name}</Typography>
-        <Button id={props.id} onClick={clickHandler} sx={{right:"0px", top:"3px",position:"absolute", textAlign:"right"}}> 
+        <Button id={props.id} data-testid="close-btn" onClick={clickHandler} sx={{right:"0px", top:"3px",position:"absolute", textAlign:"right"}}> 
             <CloseIcon />
         </Button>
     </Item>)

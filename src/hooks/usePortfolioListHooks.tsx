@@ -3,7 +3,7 @@ import {PortfolioProps} from "../interfaces/portfolioProps";
 import {portfolioState} from "../recoilState/state";
  
 
-export function usePortfolioListHooks() {
+export default function usePortfolioListHooks() {
     const [portfolioList, setPortfolioList] = useRecoilState<Array<PortfolioProps>>(portfolioState);
 
     const removePortfolio = (id:string) => {

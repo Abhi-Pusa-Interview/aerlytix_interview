@@ -2,7 +2,7 @@ import {useState} from "react";
 import { aircrafts } from "../constants/constants";
 import { AircraftProps } from "../interfaces/AircraftProps";
 
-export function useCreatePortfolio(){
+export default function useCreatePortfolio(){
     const [portfolioName, setPortfolioName] = useState<string>("");
     const [aircraftList, setAircraftList] = useState<Array<string>>([]);
 

@@ -5,12 +5,16 @@ import {getFlightData} from "../services/service";
 
 export function useFlightData(props:PortfolioProps) {
     const [flightData,setFlightData] = useState<undefined|Array<FlightDataProps>>();
+
     let timeHash:any = {};
+    
     useEffect(() => {
-      getFlightData.then((data) => {
+      getFlightData().then((data) => {
         setFlightData(data.filter((d:FlightDataProps)=>props.aircrafts.indexOf(d.registration)!==-1));
       });
     },[]);
+
+    //console.log('flight data',flightData);
   
     flightData?.map((flight:FlightDataProps) => {
       let flightStartTime = flight.departure_timestamp;
@@ -19,6 +23,7 @@ export function useFlightData(props:PortfolioProps) {
       let flightEndDate = new Date(flightStartTime);
       let flightStartString = `'${flightStartDate.getFullYear()}-${flightStartDate.getMonth()}-${flightStartDate.getDate()}'`;
       let flightEndString = `'${flightEndDate.getFullYear()}-${flightEndDate.getMonth()}-${flightEndDate.getDate()}'`;
+      
       if(flightStartString === flightEndString){
         if(!timeHash[flightStartString]){
           timeHash[flightStartString]={"flightHour":((flightEndTime - flightStartTime)/60000),"flightCycle":1};
@@ -71,6 +76,8 @@ export function useFlightData(props:PortfolioProps) {
       data.datasets[1].data.push(timeHash[key]["flightCycle"]);
       return 0;
     });
+
+    console.log("data",data);
 
     return {data};
 }
